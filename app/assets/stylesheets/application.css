@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+/*body {✖︎
+  background-image: url("hoge.jpg");
+*/}
+/*body {○
+  background-image: image-url("hoge.jpg");
+}*/

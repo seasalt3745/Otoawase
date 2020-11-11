@@ -39,15 +39,31 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'#seedの便利版？
+  # gem 'rails-controller-testing'#controller spec じゃなくてrequest sepc に書いてね？
+  gem 'ffaker'#ダミーデータの高速版
+  gem 'bullet'#N＋１問題を検知及び通知
+  gem 'bundle_outdated_formatter'
+  # gem 'rubocop', '0.35.1', require: false
+  # gem 'onkcop'#コーティングを統一（綺麗になる？）
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'better_errors'#エラー画面が見やすくなる
+  gem 'binding_of_caller'#'better_errors'でコンソールが使えるようになる
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
+  # gem 'ed25519'#capistranoでエラーが出た場合
+  # gem 'bcrypt_pbkdf'#同上
 end
 
 group :test do
@@ -58,26 +74,44 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'devise'
+gem 'ransack'
+gem 'jquery-rails'
+gem "jquery-ui-rails"
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
+gem 'pagy'#ページネーション
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass'
+gem 'gretel'#パンくずリスト
+gem 'rails-i18n'#ja.ymlに日本語にしたいのを記述
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'rename'#アプリ名変更したい場合
+gem 'jp_prefecture'
+gem 'active_hash'#擬似モデルjp_prefectureなどと
+# gem "refile-s3"#awsのs3に画像を保存
+# gem 'aws-sdk-s3'#これもawsのs3に画像を保存？
+
+gem 'dotenv-rails'
 gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano3-puma'
 gem 'capistrano-rbenv'
+gem 'capistrano-bundler'
 
-gem 'devise'
-gem 'pry-byebug'
-gem 'refile', require: 'refile/rails', github: 'manfe/refile'
-gem 'refile-mini_magick'
-gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
-gem 'pry-rails'
-gem 'kaminari'
-gem 'rails-i18n'
+
+# gem 'enum_help'#enum内容の日本語化
+# gem 'haml-rails'
+# gem 'meta-tags'#seo対策用
+# gem 'cloudinary'#画像管理、編集など
+# gem 'geocoder'#緯度経度を取得など
+# gem 'roo'#excel操作用
+# gem 'data-confirm-modal'#おしゃれアラート
+

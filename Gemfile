@@ -62,6 +62,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'rubocop-airbnb'#コードを整えてくれる
   # gem 'ed25519'#capistranoでエラーが出た場合
   # gem 'bcrypt_pbkdf'#同上
 end
@@ -98,6 +99,7 @@ gem 'jp_prefecture'
 gem 'active_hash'#擬似モデルjp_prefectureなどと
 # gem "refile-s3"#awsのs3に画像を保存
 # gem 'aws-sdk-s3'#これもawsのs3に画像を保存？
+# gem 'jquery-turbolinks'
 
 gem 'dotenv-rails'
 gem 'capistrano'

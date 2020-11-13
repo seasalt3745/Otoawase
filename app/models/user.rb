@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :genres, through: :user_genres
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
 
 # 能動的関係=フォローしている人の情報
   has_many :relationships, dependent: :destroy # フォローしてる人取得？
@@ -55,7 +56,11 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
   validates :email, presence: true, uniqueness: true
   validates :experience, numericality: { only_integer: true }, allow_blank: true
-  validates :record, length: {maximum: 100}
+  validates :history, length: {maximum: 100}
   validates :introduction, length: {maximum: 200}
+
+  def remember_me
+    true
+  end
 
 end

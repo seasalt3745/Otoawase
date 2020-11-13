@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_195000) do
+ActiveRecord::Schema.define(version: 2020_11_13_083429) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -43,11 +43,14 @@ ActiveRecord::Schema.define(version: 2020_11_11_195000) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id", null: false
-    t.integer "follower_id", null: false
+    t.integer "following_id"
+    t.integer "follower_id"
     t.boolean "is_matched", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id", "follower_id"], name: "index_relationships_on_following_id_and_follower_id", unique: true
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_195000) do
     t.integer "area"
     t.integer "experience"
     t.integer "stance", default: 0
-    t.text "record"
+    t.text "history"
     t.text "introduction"
     t.boolean "is_deleted", default: false
     t.string "reset_password_token"

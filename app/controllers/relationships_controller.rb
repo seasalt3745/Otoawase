@@ -7,7 +7,7 @@ before_action :authenticate_user!
   end
 
   def create
-    user = User.find(params[:follow_id])
+    user = User.find(params[:follower_id])
     following = current_user.follow(user)
 
       if following.save
@@ -21,7 +21,7 @@ before_action :authenticate_user!
   end
 
   def destroy
-    user = User.find(params[:follow_id])
+    user = User.find(params[:follower_id])
       following = current_user.unfollow(user)
 
       if following.destroy

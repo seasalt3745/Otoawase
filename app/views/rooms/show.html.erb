@@ -11,6 +11,7 @@
   <input type="text" id="chat-input" data-behavior="room_speaker">
 </form>
 
-<div id="direct_messages" data-room_id="<%= @room.id %>">
-  <%= render @direct_messages %>
+<div id="messages" data-room_id="<%= @room.id %>">
+  <%= render @messages %><!-- 繰り返し処理 -->
+  <!-- <%# render partial: 'messages/message', collection: @messages %>と同じ -->
 </div>

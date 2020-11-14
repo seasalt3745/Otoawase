@@ -14,8 +14,8 @@ class User < ApplicationRecord
   has_many :instruments, through: :user_instruments
   has_many :user_genres
   has_many :genres, through: :user_genres
-  has_many :messages, dependent: :destroy
-  has_many :entries, dependent: :destroy
+  has_many :messages
+  has_many :entries
   has_many :rooms, through: :entries
 
 # 能動的関係=フォローしている人の情報

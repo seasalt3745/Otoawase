@@ -14,16 +14,16 @@ class User < ApplicationRecord
   has_many :instruments, through: :user_instruments
   has_many :user_genres
   has_many :genres, through: :user_genres
-  has_many :messages, dependent: :destroy
-  has_many :entries, dependent: :destroy
+  has_many :messages
+  has_many :entries
   has_many :rooms, through: :entries
 
 # 能動的関係=フォローしている人の情報
-  has_many :relationships, dependent: :destroy # フォローしてる人取得？
-  has_many :followings, through: :relationships, source: :follow # sourceはモデルから　# 自分がフォローしている人
+  has_many :relationships, foreign_key: 'following_id', dependent: :destroy # フォローしてる人取得？
+  has_many :followings, through: :relationships, source: :follower # sourceはモデルから　# 自分がフォローしている人
 # 受動的関係＝フォロワー、フォローしてくる人の情報
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy # フォロワー取得
-  has_many :followers, through: :reverse_of_relationships, source: :user # 自分をフォローしている人
+  has_many :followers, through: :reverse_of_relationships, source: :following # 自分をフォローしている人
 
 # throughオプションによりrelationships経由でfollowings・followersにアクセスできるようになる＝relationshipは中間テーブルであるという意味付け
 # = 架空のモデルを介して、対象のモデルと多対多の関連付け => これにより情報抽出可能

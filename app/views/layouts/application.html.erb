@@ -2,14 +2,65 @@
 <html>
   <head>
     <title>Otoawase</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/5534b3fc8a.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <body>
+    <header>
+      <div class="top-icon"><%= link_to root_path do %>
+        <%= image_tag asset_path('otoawase.png') %><% end %>
+      </div>
+      <nav class="nav">
+        <div class="header-container clearfix">
+          <ul class="nav-list">
+
+            <!--ログイン時-->
+            <% if user_signed_in? %>
+              <li class="nav-list-item"　style="text-align: center;">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag 'search[content]' %>
+                  <%= select_tag 'search[method]', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+                  <%= submit_tag 'Search' %>
+                <% end %>
+              </li>
+              <li class="nav-list-item"><%= link_to "マッチング一覧", user_relationships_index_path(current_user),class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "マイページ", user_path(current_user),class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "link" %></li>
+            <!-- ログイン外 -->
+            <% else %>
+              <li class="nav-list-item"　style="text-align: right;">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag 'search[content]' %>
+                  <%= select_tag 'search[method]', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+                  <%= submit_tag 'Search' %>
+                <% end %>
+              </li>
+              <li class="nav-list-item"><%= link_to "About", users_about_path,class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "ログイン", new_user_session_path,class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "新規登録", new_user_registration_path,class: "link" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <p id="notice"><%= notice %></p>
     <%= yield %>
+
+    <footer>
+      <div class="footer-container">
+        <p class="copy">Copyright © yuichiro_saito All Rights Reserved.</p>
+        <li class="footer-item"><%= mail_to 'kh.seasaltice.3745@gmail.com', "お問い合わせ",class: "link" %>
+      </div>
+    </footer>
+
   </body>
 </html>

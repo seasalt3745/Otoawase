@@ -1,0 +1,38 @@
+<h2>Users</h2>
+		<!--users一覧 -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>image</th>
+					<th>name</th>
+					<th>follows</th>
+					<th>followers</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag(user, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+					<td><%= user.name %></td>
+					<td><%= user.relationships.count %></td>
+					<td><%= user.reverse_of_relationships.count %></td>
+					<td><% unless current_user == user %>
+						<% if current_user.following?(user) %>
+						    <%= form_for(current_user.relationships.find_by(follower_id: user.id), html: { method: :delete }) do |f| %>
+						      <%= hidden_field_tag :follower_id, user.id %>
+						      <%= f.submit 'Unfollow', class: 'btn btn-danger' %>
+						    <% end %>
+						<% else %>
+						    <%= form_for(current_user.relationships.build) do |f| %>
+						      <%= hidden_field_tag :follower_id, user.id %>
+						      <%= f.submit 'Follow', class: 'btn btn-primary' %>
+						    <% end %>
+						<% end %>
+						<% end %></td>
+					<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>

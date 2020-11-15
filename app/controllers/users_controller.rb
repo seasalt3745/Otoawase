@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 before_action :ensure_correct_user, only: [:edit, :update, :hide, :withdrawal]
 
 	def top
+		@instruments = Instrument.all
+		@genres = Genre.all
 	end
 
 	def about

@@ -1,0 +1,5 @@
+id,name,area,experience,stance,history,introduction,email,password,password_confirmation
+1,高橋拓也,13,0,0,なし,初心者ですがよろしくお願いします！,takahashi@test.jp,123456,123456
+2,秋田ともひろ,1,6,1,吹奏楽、室内楽、ソロ,楽しく演奏したいです。,akita@test.jp,123456,123456
+3,秋葉真世,3,10,2,フルートソロ,室内楽で演奏会してみたいです！,akiba@test.jp,123456,123456
+4,横尾丹保,18,15,3,グラズノフコンチェルト、ファジーバードなど,良いものを作り上げたいです！,yokoo@test.jp,123456,123456

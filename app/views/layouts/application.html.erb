@@ -15,35 +15,49 @@
   <body>
     <body>
     <header>
-        <nav class="nav">
-          <div class="header-container clearfix">
-            <ul class="nav-list">
+      <div class="top-icon"><%= link_to root_path do %>
+        <%= image_tag asset_path('otoawase.png') %><% end %>
+      </div>
+      <nav class="nav">
+        <div class="header-container clearfix">
+          <ul class="nav-list">
 
-              <!--ログイン時-->
-              <% if user_signed_in? %>
-                <li class="nav-top-item"><%= link_to root_path do %>
-                  <%= image_tag asset_path('otoawase.png', id: 'top-icon') %><% end %></li>
-                <li class="nav-list-item"><%= link_to "マッチング一覧", user_relationships_index_path(current_user),class: "link" %></li>
-                <li class="nav-list-item"><%= link_to "マイページ", user_path(current_user),class: "link" %></li>
-                <li class="nav-list-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "link" %></li>
-              <!-- ログイン外 -->
-              <% else %>
-                <li class="nav-top-item"><%= link_to root_path do %>
-                  <%= image_tag asset_path('otoawase.png', id: 'top-icon') %><% end %></li>
-                <li class="nav-list-item"><%= link_to "About", users_about_path,class: "link" %></li>
-                <li class="nav-list-item"><%= link_to "ログイン", new_user_session_path,class: "link" %></li>
-                <li class="nav-list-item"><%= link_to "新規登録", new_user_registration_path,class: "link" %></li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
+            <!--ログイン時-->
+            <% if user_signed_in? %>
+              <li class="nav-list-item"　style="text-align: center;">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag 'search[content]' %>
+                  <%= select_tag 'search[method]', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+                  <%= submit_tag 'Search' %>
+                <% end %>
+              </li>
+              <li class="nav-list-item"><%= link_to "マッチング一覧", user_relationships_index_path(current_user),class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "マイページ", user_path(current_user),class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "link" %></li>
+            <!-- ログイン外 -->
+            <% else %>
+              <li class="nav-list-item"　style="text-align: right;">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag 'search[content]' %>
+                  <%= select_tag 'search[method]', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
+                  <%= submit_tag 'Search' %>
+                <% end %>
+              </li>
+              <li class="nav-list-item"><%= link_to "About", users_about_path,class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "ログイン", new_user_session_path,class: "link" %></li>
+              <li class="nav-list-item"><%= link_to "新規登録", new_user_registration_path,class: "link" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
 
+    <p id="notice"><%= notice %></p>
     <%= yield %>
 
     <footer>
       <div class="footer-container">
-        <p class="copy">Copyright © Zoo Inc. All Rights Reserved.</p>
+        <p class="copy">Copyright © yuichiro_saito All Rights Reserved.</p>
         <li class="footer-item"><%= mail_to 'kh.seasaltice.3745@gmail.com', "お問い合わせ",class: "link" %>
       </div>
     </footer>

@@ -16,7 +16,7 @@ table_names.each do |table_name|
 end
 
 
-instruments = Instrument.create([
+instruments = Instrument.create!([
   {name: 'ピアノ'},
   {name: 'サックス'},
   {name: 'クラリネット'},
@@ -31,7 +31,7 @@ instruments = Instrument.create([
   {name: 'アカペラ'},
 ])
 
-genres = Genre.create([
+genres = Genre.create!([
   {name: 'クラシック'},
   {name: 'ジャズ'},
   {name: 'Jポップ'},
@@ -39,7 +39,7 @@ genres = Genre.create([
   {name: 'アニソン'},
 ])
 
-users = User.create([
+users = User.create!([
   {name: '齋藤祐一郎', email: 'kh.seasaltice.3745@gmail.com', password: '111111', password_confirmation: '111111'},
   {name: 'テストユーザー', email: 'test-user@test.jp', password: '123456', password_confirmation: '123456'},
 ])

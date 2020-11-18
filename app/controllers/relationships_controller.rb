@@ -13,7 +13,7 @@ before_action :authenticate_user!
       if following.save
         # flash[:success] = 'ユーザーをフォローしました'
         redirect_to request.referer
-      # elsif following.save && 
+      # elsif following.save &&,,,case?
         
       else
         # flash.now[:alert] = 'ユーザーのフォローに失敗しました'

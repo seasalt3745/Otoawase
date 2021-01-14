@@ -96,6 +96,6 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'https://otoawase.work', /https:\/\/otoawase.*/ ]
   ActionCable.server.config.disable_request_forgery_protection = true
 
-  config.action_cable.url = 'ws://otoawase.work/cable'
-  config.action_cable.allowed_request_origins = [ 'https://otoawase.work' ]
+  config.action_cable.url = 'wss://otoawase.work/cable'
+  config.action_cable.allowed_request_origins = [ 'https://otoawase.work', /https:\/\/otoawase.*/ ]
 end

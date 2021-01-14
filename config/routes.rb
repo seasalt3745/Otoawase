@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create,:destroy]
   resources :messages, only: [:create,:destroy]
   resources :rooms, only: [:create, :show, :index]
+  mount ActionCable.server => '/cable'
 
 end
